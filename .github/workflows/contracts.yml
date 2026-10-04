@@ -1,0 +1,46 @@
+name: DataGuard Contract Compatibility & Quality Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'dataguard/contracts/**'
+      - 'dataguard/schema/**'
+      - 'dataguard/quality/**'
+      - 'dataguard/ci/**'
+      - 'scripts/ci_contract_gate.py'
+
+jobs:
+  contract-ci-gate:
+    name: "Contract Compatibility Gate"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository with History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute DataGuard CI Gate (SAFE / WARNING / BREAKING)
+        id: gate
+        run: |
+          python scripts/ci_contract_gate.py \
+            --base origin/${{ github.base_ref || 'main' }} \
+            --output-summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Run CI Gating Verification Tests
+        if: always()
+        run: |
+          pytest dataguard/tests/test_ci_gating.py -v
+

@@ -166,6 +166,8 @@ DataGuard provides comprehensive OpenAPI/Swagger documentation at `http://localh
 | `POST /lineage/events` | `POST` | Ingests an OpenLineage standard compliant RunEvent |
 | `GET /pipelines` | `GET` | Lists all registered Airflow data pipelines and run status |
 | `GET /pipelines/summary` | `GET` | Returns dynamic platform aggregation and success rates |
+| `POST /ci/gate` | `POST` | Pre-merge PR contract compatibility check (SAFE/WARNING/BREAKING) |
+| `POST /ci/gate/pr` | `POST` | Batch PR contract compatibility evaluation with Markdown report |
 | `GET /metrics` | `GET` | Prometheus operational & business telemetry |
 
 ---
@@ -177,6 +179,8 @@ All benchmarks measured against actual PostgreSQL 16 infrastructure:
 | Operation | Scale / Dataset Size | Mean Latency | Throughput | Status |
 |---|---|---|---|---|
 | **Schema Diff Evaluation** | 100 columns | **0.88 ms** | 1,136 diffs/s | Verified |
+| **CI/CD Contract Gate** | 100 columns | **0.57 ms** | 1,768 evals/s | Verified |
+| **Batch PR Evaluation** | 25 production contracts | **1.83 ms** | 546 PRs/s | Verified |
 | **Quality Check Execution** | 100,000 rows (15 checks) | **276.84 ms** | 361,223 rows/s | Verified |
 | **Incident Creation & Dedup** | PostgreSQL Transaction | **1.24 ms** | 806 ops/s | Verified |
 | **OpenLineage Event Ingestion** | Full RunEvent Payload | **4.81 ms** | 208 ops/s | Verified |
