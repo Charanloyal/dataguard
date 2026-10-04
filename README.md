@@ -70,6 +70,13 @@ Apache Airflow Orchestration Layer
 - **Deterministic Demo Pipelines**: Includes test pipelines for clean runs, null failures, duplicate keys, enum violations, referential integrity breaks, stale SLAs, and breaking schema alterations.
 - **Smart Retries & Idempotency**: Retries transient infrastructure hiccups with backoff while immediately escalating deterministic quality failures.
 
+### 7. Unified Data Platform Dashboard (Phase J)
+- **Unified Observability Console**: Polished single-pane-of-glass dashboard (`apps/unified-dashboard/`) presenting FeatureHub and DataGuard operations.
+- **12 Primary Pages**: Platform Overview, Pipeline Operations, FeatureHub Explorer, Online Store Latency Monitor, Point-in-Time Join Leakage Prevention Demo, Real-Time ML Prediction, DataGuard Contract Explorer, Interactive Schema Diff, Great Expectations Quality Trends, Column-Level Lineage Graph, Operational Incident Center, CI/CD Pre-Merge Gate, Unified Benchmarks, and Infrastructure Health Monitor.
+- **Zero Mock Metrics**: 100% real database, Redis, API, and verified benchmark metrics.
+- **Recruiter Demo Mode**: 6 interactive one-click scenarios demonstrating end-to-end platform workflows in under 60 seconds.
+- See [`docs/architecture/unified-dashboard.md`](docs/architecture/unified-dashboard.md), [`docs/demos/unified-dashboard.md`](docs/demos/unified-dashboard.md), and [`docs/UNIFIED_DASHBOARD_VALIDATION.md`](docs/UNIFIED_DASHBOARD_VALIDATION.md).
+
 ---
 
 ## Architecture Diagram
